@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Website GTPS</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060a14;--sf:#0d1424;--tx:#e8f4ff;--mu:#8fa6c4;--ln:#1c3a52;--ac:#00e5ff;--ac2:#ff00c8;--ai:#001418;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:70px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:500 17px/1.55 Rajdhani,system-ui,sans-serif;min-height:100vh}
+body.fx::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:linear-gradient(var(--ln) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,var(--ln) 1px,transparent 1px) 0 0/40px 40px;opacity:.25;mask-image:linear-gradient(#000,transparent 80%)}
+body.fx::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.18) 2px 3px)}
+main,header,footer,nav{position:relative;z-index:1}
+h1,h2,h3{font-family:Orbitron,system-ui,sans-serif;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+.hero{text-align:center;padding:42px 0 22px}
+#logo{width:112px;height:112px;margin:0 auto 14px;display:grid;place-items:center;font-size:60px;border:2px solid var(--ac);background:var(--sf);overflow:hidden}
+body.fx #logo{box-shadow:0 0 22px var(--ac),inset 0 0 18px color-mix(in srgb,var(--ac) 35%,transparent)}
+#logo img{width:100%;height:100%;object-fit:cover}
+h1{font-size:clamp(28px,8vw,52px);letter-spacing:.04em;overflow-wrap:anywhere}
+body.fx h1{text-shadow:0 0 14px var(--ac)}
+.tag{color:var(--mu);font-size:19px;margin:8px auto 14px;max-width:48ch}
+.pill{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--ln);background:var(--sf);padding:4px 14px;font-weight:700}
+.dot{width:10px;height:10px;border-radius:50%;background:#2bff88}.off .dot{background:#ff4d5e}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-block:1px solid var(--ln)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;justify-content:center}
+nav a{color:var(--tx);text-decoration:none;font-weight:700;padding:12px 14px;white-space:nowrap}
+nav a:hover{color:var(--ac)}
+section{padding:34px 0 6px}
+h2{font-size:22px;margin-bottom:14px;color:var(--ac)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{background:var(--sf);border:1px solid var(--ln);padding:16px;display:flex;flex-direction:column;gap:6px}
+.card b{font-family:Orbitron,sans-serif;font-size:17px}
+.card span{color:var(--mu);font-size:15px;flex:1}
+.btn{font:700 16px Rajdhani,sans-serif;text-decoration:none;text-align:center;color:var(--ai);background:var(--ac);border:0;padding:10px 18px;cursor:pointer;display:inline-block;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.btn.alt{background:transparent;color:var(--ac);outline:1px solid var(--ac);outline-offset:-1px}
+body.fx .btn:not(.alt):hover{box-shadow:0 0 18px var(--ac)}
+ol.st{list-style:none;counter-reset:s;margin:0;padding:0}
+ol.st li{counter-increment:s;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--ln)}
+ol.st li::before{content:counter(s);font:800 15px Orbitron,sans-serif;color:var(--ai);background:var(--ac);min-width:30px;height:30px;display:grid;place-items:center}
+.disc{border:1px solid var(--ac2);padding:20px;text-align:center;background:var(--sf)}
+body.fx .disc{box-shadow:0 0 20px color-mix(in srgb,var(--ac2) 40%,transparent)}
+.disc .btn{background:var(--ac2);color:#fff;margin:6px 4px}
+.links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
+ul.inf{margin:0;padding-left:20px}ul.inf li{margin:5px 0}
+footer{padding:30px 0 90px;color:var(--mu);text-align:center;font-size:15px}
+.code b{font-family:'Courier New',monospace;letter-spacing:.08em;color:var(--ac2);overflow-wrap:anywhere}.code em{font-style:normal;font-size:14px;color:#2bff88}.code.ex{opacity:.55}.code.ex em{color:#ff4d5e}.code button{margin-top:4px}.code button:disabled{cursor:not-allowed}.how{color:var(--mu);margin:0 0 12px}
+.hidden{display:none!important}
+#gear{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;width:52px;height:52px;padding:0;font-size:24px;clip-path:none;border-radius:50%}
+#panel{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--sf);border-left:1px solid var(--ac);z-index:70;overflow-y:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(30px + env(safe-area-inset-bottom,0px));transform:translateX(100%);transition:transform .2s}
+#panel.open{transform:none}
+#panel h3{font-size:18px;margin-bottom:8px}
+fieldset{border:0;border-top:1px solid var(--ln);margin:12px 0 0;padding:10px 0 0}
+legend{font-weight:700;color:var(--ac);padding-right:8px}
+label{display:block;font-size:14px;margin:8px 0 3px;color:var(--mu)}
+input[type=text],input[type=url],input[type=number],textarea,select{width:100%;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--ln);padding:7px 9px}
+textarea{min-height:96px;resize:vertical;font-size:15px}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.chk{display:flex;align-items:center;gap:8px;color:var(--tx);font-size:16px}.chk input{accent-color:var(--ac);width:18px;height:18px}
+.rgb{display:grid;grid-template-columns:22px 1fr 40px;gap:6px;align-items:center;font-size:14px}
+.rgb input[type=range]{width:100%}
+.sw{height:26px;border:1px solid var(--ln);margin:4px 0}
+.sm{font-size:14px;padding:7px 12px}
+.msg{font-size:13px;color:var(--mu);min-height:16px;margin:4px 0}
+</style>
+</head>
+<body class="fx">
+<header class="hero"><div class="wrap">
+  <div id="logo"></div>
+  <h1 id="name"></h1>
+  <p class="tag" id="tagline"></p>
+  <span class="pill" id="status"><span class="dot"></span><span id="stTxt"></span></span>
+  <p><button class="btn alt sm" id="copyIp" type="button"></button> <span class="msg" id="copyMsg"></span></p>
+</div></header>
+<nav><div class="wrap" id="menu"></div></nav>
+
+<main class="wrap">
+  <section id="download"><h2>Download</h2><div class="grid" id="dl"></div></section>
+  <section id="tutorial"><h2>Tata cara pemasangan</h2><ol class="st" id="steps"></ol></section>
+  <section id="redeem"><h2>Kode redeem</h2><p class="how" id="rdHow"></p><div class="grid" id="codes"></div></section>
+  <section id="discord"><h2>Komunitas</h2><div class="disc"><div id="dcTxt"></div><div id="dcBtn"></div><div class="links" id="links"></div></div></section>
+  <section id="info"><h2 id="infoT"></h2><ul class="inf" id="infoL"></ul></section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+
+<button class="btn" id="gear" type="button" aria-label="Buka pengaturan">⚙</button>
+<aside id="panel" aria-label="Pengaturan">
+<h3>Pengaturan website</h3>
+<p class="msg">Perubahan langsung tampil dan tersimpan di browser ini.</p>
+<fieldset><legend>Server</legend>
+ <label for="f-name">Nama server</label><input type="text" id="f-name">
+ <label for="f-tagline">Tagline</label><input type="text" id="f-tagline">
+ <div class="row"><div><label for="f-ip">IP / Host</label><input type="text" id="f-ip"></div><div><label for="f-port">Port</label><input type="number" id="f-port"></div></div>
+ <div class="row"><div><label for="f-status">Status</label><select id="f-status"><option value="online">Online</option><option value="maintenance">Maintenance</option><option value="offline">Offline</option></select></div><div><label for="f-players">Pemain online</label><input type="number" id="f-players" min="0"></div></div>
+</fieldset>
+<fieldset><legend>Logo</legend>
+ <label for="f-emoji">Logo teks / emoji (jika tanpa gambar)</label><input type="text" id="f-emoji" maxlength="4">
+ <label for="f-file">Unggah gambar logo</label><input type="file" id="f-file" accept="image/*">
+ <label for="f-logoUrl">Atau URL gambar (hanya jalan jika web di-host sendiri)</label><input type="url" id="f-logoUrl">
+ <button class="btn alt sm" id="rmLogo" type="button" style="margin-top:8px">Hapus gambar</button>
+</fieldset>
+<fieldset><legend>Download</legend>
+ <label for="f-dl">Satu per baris: Nama | Link | Keterangan</label><textarea id="f-dl"></textarea>
+</fieldset>
+<fieldset><legend>Tata cara</legend>
+ <label for="f-steps">Satu langkah per baris</label><textarea id="f-steps"></textarea>
+</fieldset>
+<fieldset><legend>Kode redeem</legend>
+ <label for="f-redeemHow">Cara menukar kode</label><input type="text" id="f-redeemHow">
+ <label for="f-redeem">Satu per baris: KODE | Hadiah | Status (isi Kadaluarsa jika sudah habis)</label><textarea id="f-redeem"></textarea>
+</fieldset>
+<fieldset><legend>Discord &amp; tautan</legend>
+ <label for="f-dc">Link Discord</label><input type="url" id="f-dc" placeholder="https://discord.gg/...">
+ <label for="f-dcTxt">Teks ajakan</label><input type="text" id="f-dcTxt">
+ <label for="f-links">Tautan lain: Nama | Link</label><textarea id="f-links"></textarea>
+</fieldset>
+<fieldset><legend>Info tambahan</legend>
+ <label for="f-infoT">Judul bagian</label><input type="text" id="f-infoT">
+ <label for="f-info">Satu poin per baris</label><textarea id="f-info"></textarea>
+ <label for="f-foot">Teks footer</label><input type="text" id="f-foot">
+</fieldset>
+<fieldset><legend>Warna &amp; tema</legend>
+ <div class="row" style="flex-wrap:wrap">
+  <button class="btn alt sm" data-p="cyber" type="button">Cyber</button><button class="btn alt sm" data-p="matrix" type="button">Matrix</button><button class="btn alt sm" data-p="crimson" type="button">Merah</button><button class="btn alt sm" data-p="light" type="button">Terang</button>
+ </div>
+ <div id="rgbs"></div>
+ <label class="chk"><input type="checkbox" id="f-fx"> Efek cyber (grid, glow, scanline)</label>
+</fieldset>
+<fieldset><legend>Tampilkan bagian</legend>
+ <label class="chk"><input type="checkbox" id="s-download"> Download</label>
+ <label class="chk"><input type="checkbox" id="s-tutorial"> Tata cara</label>
+ <label class="chk"><input type="checkbox" id="s-redeem"> Kode redeem</label>
+ <label class="chk"><input type="checkbox" id="s-discord"> Komunitas</label>
+ <label class="chk"><input type="checkbox" id="s-info"> Info tambahan</label>
+</fieldset>
+<fieldset><legend>Config</legend>
+ <label for="f-json">Config JSON (tempel lalu Terapkan)</label><textarea id="f-json"></textarea>
+ <div class="row" style="margin-top:8px"><button class="btn sm" id="apply" type="button">Terapkan</button><button class="btn alt sm" id="reset" type="button">Reset</button><button class="btn alt sm" id="close" type="button">Tutup</button></div>
+ <p class="msg" id="jmsg"></p>
+</fieldset>
+</aside>
+
+<script>
+(function(){
+var KEY='gtps-site-v2',$=function(i){return document.getElementById(i)};
+var DEF={name:'NAMA SERVER',tagline:'Server Growtopia pribadi dengan event rutin dan komunitas ramah.',status:'online',ip:'127.0.0.1',port:17091,players:0,emoji:'🌱',logoData:'',logoUrl:'',
+dl:'VHost | https://example.com/vhost | Aplikasi VHost untuk Android\nPowerTunnel | https://example.com/powertunnel | Koneksi via PowerTunnel\niOS | https://example.com/ios | Untuk iPhone dan iPad\nWindows | https://example.com/windows | Untuk PC / Laptop',
+steps:'Download aplikasi sesuai perangkatmu\nInstal dan buka aplikasinya\nMasukkan IP dan port server\nTekan Connect lalu buka Growtopia\nDaftar akun dan mulai bermain',
+redeemHow:'Salin kode, lalu masukkan lewat menu Redeem di dalam game atau kirim ke admin di Discord.',redeem:'WELCOME2026 | 100 Gems + 1 World Lock | Aktif\nEVENTSABTU | Item event terbatas | Aktif\nPROMO100 | 50 Gems | Kadaluarsa',dc:'',dcTxt:'Gabung Discord untuk info event, bantuan, dan pengumuman.',links:'WhatsApp | https://wa.me/\nYouTube | https://youtube.com/',
+infoT:'Info tambahan',info:'Event mingguan setiap Sabtu\nTopup dan donasi lewat admin\nLapor bug di channel Discord',foot:'Tidak berafiliasi dengan Ubisoft atau Growtopia.',
+ac:[0,229,255],ac2:[255,0,200],bg:[6,10,20],fx:true,s:{download:true,tutorial:true,redeem:true,discord:true,info:true}};
+var PRE={cyber:{ac:[0,229,255],ac2:[255,0,200],bg:[6,10,20],fx:true},matrix:{ac:[0,255,102],ac2:[190,255,0],bg:[3,12,6],fx:true},crimson:{ac:[255,48,80],ac2:[255,160,0],bg:[14,5,8],fx:true},light:{ac:[0,102,255],ac2:[255,60,140],bg:[238,244,255],fx:false}};
+var cfg=load();
+function load(){var c={};try{c=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}return Object.assign({},DEF,c,{s:Object.assign({},DEF.s,c.s||{})})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(cfg))}catch(e){$('jmsg').textContent='Penyimpanan penuh, logo mungkin terlalu besar.'}}
+function L(s){return String(s||'').split('\n').map(function(x){return x.trim()}).filter(Boolean)}
+function rgb(a){return 'rgb('+a.join(',')+')'}
+function mix(a,b,t){return a.map(function(v,i){return Math.round(v+(b[i]-v)*t)})}
+function lum(a){return (a[0]*299+a[1]*587+a[2]*114)/1000}
+function safe(u){return /^https?:\/\//i.test(u)||/^mailto:/i.test(u)}
+function mk(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function link(txt,url,cls){var a=mk('a','btn'+(cls||''),txt);a.href=url;a.target='_blank';a.rel='noopener';return a}
+function render(){
+ var r=document.documentElement.style,dark=lum(cfg.bg)<140,w=dark?[255,255,255]:[0,0,0];
+ r.setProperty('--bg',rgb(cfg.bg));r.setProperty('--sf',rgb(mix(cfg.bg,w,.07)));r.setProperty('--tx',dark?'#e8f4ff':'#10182b');
+ r.setProperty('--mu',rgb(mix(dark?[255,255,255]:[0,0,0],cfg.bg,.35)));r.setProperty('--ln',rgb(mix(cfg.bg,cfg.ac,.3)));
+ r.setProperty('--ac',rgb(cfg.ac));r.setProperty('--ac2',rgb(cfg.ac2));r.setProperty('--ai',lum(cfg.ac)>150?'#06101a':'#fff');
+ r.setProperty('color-scheme',dark?'dark':'light');document.body.classList.toggle('fx',!!cfg.fx);
+ document.title=cfg.name;$('name').textContent=cfg.name;$('tagline').textContent=cfg.tagline;
+ var lg=$('logo');lg.textContent='';var src=cfg.logoData||(safe(cfg.logoUrl)?cfg.logoUrl:'');
+ if(src){var im=mk('img');im.alt='Logo '+cfg.name;im.src=src;im.onerror=function(){lg.textContent=cfg.emoji};lg.appendChild(im)}else lg.textContent=cfg.emoji;
+ $('status').className='pill'+(cfg.status==='online'?'':' off');
+ $('stTxt').textContent={online:'Online · '+cfg.players+' pemain',maintenance:'Sedang maintenance',offline:'Offline'}[cfg.status];
+ $('copyIp').textContent='Salin '+cfg.ip+':'+cfg.port;
+ var d=$('dl');d.textContent='';L(cfg.dl).forEach(function(x){var p=x.split('|').map(function(s){return s.trim()}),c=mk('div','card');c.appendChild(mk('b',0,p[0]));c.appendChild(mk('span',0,p[2]||''));if(safe(p[1]))c.appendChild(link('Download',p[1]));d.appendChild(c)});
+ var s=$('steps');s.textContent='';L(cfg.steps).forEach(function(x){s.appendChild(mk('li',0,x))});
+ $('rdHow').textContent=cfg.redeemHow;var rd=$('codes');rd.textContent='';L(cfg.redeem).forEach(function(x){var p=x.split('|').map(function(t){return t.trim()}),c=mk('div','card code'),ex=/kadaluarsa|habis|expired/i.test(p[2]||'');if(ex)c.classList.add('ex');c.appendChild(mk('b',0,p[0]));c.appendChild(mk('span',0,p[1]||''));c.appendChild(mk('em',0,p[2]||'Aktif'));var bt=mk('button','btn alt sm','Salin kode');bt.type='button';bt.disabled=ex;bt.onclick=function(){try{navigator.clipboard.writeText(p[0]).then(function(){bt.textContent='Tersalin'},function(){bt.textContent=p[0]})}catch(e){bt.textContent=p[0]}};c.appendChild(bt);rd.appendChild(c)});
+ $('dcTxt').textContent=cfg.dcTxt;var b=$('dcBtn');b.textContent='';if(safe(cfg.dc))b.appendChild(link('Gabung Discord',cfg.dc));
+ var k=$('links');k.textContent='';L(cfg.links).forEach(function(x){var p=x.split('|').map(function(s){return s.trim()});if(safe(p[1]))k.appendChild(link(p[0],p[1],' alt'))});
+ $('infoT').textContent=cfg.infoT;var n=$('infoL');n.textContent='';L(cfg.info).forEach(function(x){n.appendChild(mk('li',0,x))});
+ $('foot').textContent=cfg.foot;
+ var m=$('menu');m.textContent='';[['download','Download'],['tutorial','Tata cara'],['redeem','Redeem'],['discord','Discord'],['info','Info']].forEach(function(x){var on=cfg.s[x[0]];$(x[0]).classList.toggle('hidden',!on);if(on){var a=mk('a',0,x[1]);a.href='#'+x[0];m.appendChild(a)}});
+ $('f-json').value=JSON.stringify(cfg,null,2);
+}
+var map={'f-name':'name','f-tagline':'tagline','f-ip':'ip','f-port':'port','f-status':'status','f-players':'players','f-emoji':'emoji','f-logoUrl':'logoUrl','f-dl':'dl','f-steps':'steps','f-redeem':'redeem','f-redeemHow':'redeemHow','f-dc':'dc','f-dcTxt':'dcTxt','f-links':'links','f-infoT':'infoT','f-info':'info','f-foot':'foot'};
+Object.keys(map).forEach(function(id){var e=$(id);e.addEventListener(e.tagName==='SELECT'?'change':'input',function(){var v=e.value;if(e.type==='number')v=Number(v)||0;cfg[map[id]]=v;save();render()})});
+['download','tutorial','redeem','discord','info'].forEach(function(k){$('s-'+k).addEventListener('change',function(){cfg.s[k]=$('s-'+k).checked;save();render()})});
+$('f-fx').addEventListener('change',function(){cfg.fx=$('f-fx').checked;save();render()});
+var rg=$('rgbs');
+[['ac','Aksen utama'],['ac2','Aksen kedua'],['bg','Latar']].forEach(function(c){var w=mk('div');w.appendChild(mk('label',0,c[1]));
+ w.firstChild.textContent=c[1]+' (RGB)';var sw=mk('div','sw');w.appendChild(sw);
+ ['R','G','B'].forEach(function(ch,i){var row=mk('div','rgb'),rn=document.createElement('input');rn.type='range';rn.min=0;rn.max=255;rn.id='r-'+c[0]+i;rn.setAttribute('aria-label',c[1]+' '+ch);var nv=mk('span',0,'');row.appendChild(mk('span',0,ch));row.appendChild(rn);row.appendChild(nv);w.appendChild(row);
+  rn.addEventListener('input',function(){cfg[c[0]][i]=Number(rn.value);nv.textContent=rn.value;sw.style.background=rgb(cfg[c[0]]);save();render()})});
+ w.sw=sw;rg.appendChild(w)});
+function fill(){Object.keys(map).forEach(function(id){$(id).value=cfg[map[id]]});
+ Object.keys(cfg.s).forEach(function(k){$('s-'+k).checked=cfg.s[k]});$('f-fx').checked=!!cfg.fx;
+ ['ac','ac2','bg'].forEach(function(k){for(var i=0;i<3;i++){var e=$('r-'+k+i);e.value=cfg[k][i];e.nextSibling.textContent=cfg[k][i]}});
+ Array.prototype.forEach.call(rg.children,function(w,i){w.sw.style.background=rgb(cfg[['ac','ac2','bg'][i]])})}
+Array.prototype.forEach.call(document.querySelectorAll('[data-p]'),function(b){b.onclick=function(){var p=PRE[b.dataset.p];cfg.ac=p.ac.slice();cfg.ac2=p.ac2.slice();cfg.bg=p.bg.slice();cfg.fx=p.fx;save();fill();render()}});
+$('f-file').addEventListener('change',function(){var f=this.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,256/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);cfg.logoData=c.toDataURL('image/png');save();render()};im.src=rd.result};rd.readAsDataURL(f)});
+$('rmLogo').onclick=function(){cfg.logoData='';cfg.logoUrl='';$('f-logoUrl').value='';save();render()};
+$('gear').onclick=function(){$('panel').classList.add('open')};$('close').onclick=function(){$('panel').classList.remove('open')};
+$('reset').onclick=function(){cfg=JSON.parse(JSON.stringify(DEF));save();fill();render();$('jmsg').textContent='Config dikembalikan ke awal.'};
+$('apply').onclick=function(){try{var j=JSON.parse($('f-json').value);cfg=Object.assign({},DEF,j,{s:Object.assign({},DEF.s,j.s||{})});save();fill();render();$('jmsg').textContent='Config diterapkan.'}catch(e){$('jmsg').textContent='JSON tidak valid. Periksa koma dan tanda kutip.'}};
+$('copyIp').onclick=function(){var t=cfg.ip+':'+cfg.port;try{navigator.clipboard.writeText(t).then(function(){$('copyMsg').textContent='Tersalin'},function(){$('copyMsg').textContent=t})}catch(e){$('copyMsg').textContent=t}};
+fill();render();
+})();
+</script>
+</body>
+</html>
