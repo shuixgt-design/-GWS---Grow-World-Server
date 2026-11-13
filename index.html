@@ -86,7 +86,7 @@ textarea{min-height:96px;resize:vertical;font-size:15px}
 </main>
 <footer><div class="wrap" id="foot"></div></footer>
 
-<button class="btn" id="gear" type="button" aria-label="Buka pengaturan">⚙</button>
+<button class="btn hidden" id="gear" type="button" aria-label="Buka pengaturan">⚙</button>
 <aside id="panel" aria-label="Pengaturan">
 <h3>Pengaturan website</h3>
 <p class="msg">Perubahan langsung tampil dan tersimpan di browser ini.</p>
@@ -202,7 +202,9 @@ function fill(){Object.keys(map).forEach(function(id){$(id).value=cfg[map[id]]})
 Array.prototype.forEach.call(document.querySelectorAll('[data-p]'),function(b){b.onclick=function(){var p=PRE[b.dataset.p];cfg.ac=p.ac.slice();cfg.ac2=p.ac2.slice();cfg.bg=p.bg.slice();cfg.fx=p.fx;save();fill();render()}});
 $('f-file').addEventListener('change',function(){var f=this.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,256/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);cfg.logoData=c.toDataURL('image/png');save();render()};im.src=rd.result};rd.readAsDataURL(f)});
 $('rmLogo').onclick=function(){cfg.logoData='';cfg.logoUrl='';$('f-logoUrl').value='';save();render()};
-$('gear').onclick=function(){$('panel').classList.add('open')};$('close').onclick=function(){$('panel').classList.remove('open')};
+$('gear').onclick=function(){$('panel').classList.add('open')};
+function chkAdmin(){var on=false;try{if(location.hash==='#admin')localStorage.setItem('gtps-admin','1');if(location.hash==='#keluar')localStorage.removeItem('gtps-admin');on=localStorage.getItem('gtps-admin')==='1'}catch(e){on=location.hash==='#admin'}$('gear').classList.toggle('hidden',!on);if(!on)$('panel').classList.remove('open')}
+chkAdmin();window.addEventListener('hashchange',chkAdmin);$('close').onclick=function(){$('panel').classList.remove('open')};
 $('reset').onclick=function(){cfg=JSON.parse(JSON.stringify(DEF));save();fill();render();$('jmsg').textContent='Config dikembalikan ke awal.'};
 $('apply').onclick=function(){try{var j=JSON.parse($('f-json').value);cfg=Object.assign({},DEF,j,{s:Object.assign({},DEF.s,j.s||{})});save();fill();render();$('jmsg').textContent='Config diterapkan.'}catch(e){$('jmsg').textContent='JSON tidak valid. Periksa koma dan tanda kutip.'}};
 $('copyIp').onclick=function(){var t=cfg.ip+':'+cfg.port;try{navigator.clipboard.writeText(t).then(function(){$('copyMsg').textContent='Tersalin'},function(){$('copyMsg').textContent=t})}catch(e){$('copyMsg').textContent=t}};
