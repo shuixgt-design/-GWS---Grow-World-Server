@@ -146,7 +146,7 @@ textarea{min-height:96px;resize:vertical;font-size:15px}
 <script>
 (function(){
 var KEY='gtps-site-v2',$=function(i){return document.getElementById(i)};
-var DEF={name:'NAMA SERVER',tagline:'Server Growtopia pribadi dengan event rutin dan komunitas ramah.',status:'online',ip:'127.0.0.1',port:17091,players:0,emoji:'🌱',logoData:'',logoUrl:'',
+var DEF={name:'NAMA SERVER',tagline:'Server Growtopia pribadi dengan event rutin dan komunitas ramah.',status:'online',ip:'127.0.0.1',port:17091,players:0,emoji:'🌱',logoData:'',logoUrl:'logo.png',
 dl:'VHost | https://example.com/vhost | Aplikasi VHost untuk Android\nPowerTunnel | https://example.com/powertunnel | Koneksi via PowerTunnel\niOS | https://example.com/ios | Untuk iPhone dan iPad\nWindows | https://example.com/windows | Untuk PC / Laptop',
 steps:'Download aplikasi sesuai perangkatmu\nInstal dan buka aplikasinya\nMasukkan IP dan port server\nTekan Connect lalu buka Growtopia\nDaftar akun dan mulai bermain',
 redeemHow:'Salin kode, lalu masukkan lewat menu Redeem di dalam game atau kirim ke admin di Discord.',redeem:'WELCOME2026 | 100 Gems + 1 World Lock | Aktif\nEVENTSABTU | Item event terbatas | Aktif\nPROMO100 | 50 Gems | Kadaluarsa',dc:'',dcTxt:'Gabung Discord untuk info event, bantuan, dan pengumuman.',links:'WhatsApp | https://wa.me/\nYouTube | https://youtube.com/',
@@ -160,6 +160,7 @@ function L(s){return String(s||'').split('\n').map(function(x){return x.trim()})
 function rgb(a){return 'rgb('+a.join(',')+')'}
 function mix(a,b,t){return a.map(function(v,i){return Math.round(v+(b[i]-v)*t)})}
 function lum(a){return (a[0]*299+a[1]*587+a[2]*114)/1000}
+function okImg(u){return /^https?:\/\//i.test(u)||/^[\w\-.\/]+\.(png|jpe?g|webp|svg|gif)$/i.test(u)}
 function safe(u){return /^https?:\/\//i.test(u)||/^mailto:/i.test(u)}
 function mk(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function link(txt,url,cls){var a=mk('a','btn'+(cls||''),txt);a.href=url;a.target='_blank';a.rel='noopener';return a}
@@ -170,7 +171,7 @@ function render(){
  r.setProperty('--ac',rgb(cfg.ac));r.setProperty('--ac2',rgb(cfg.ac2));r.setProperty('--ai',lum(cfg.ac)>150?'#06101a':'#fff');
  r.setProperty('color-scheme',dark?'dark':'light');document.body.classList.toggle('fx',!!cfg.fx);
  document.title=cfg.name;$('name').textContent=cfg.name;$('tagline').textContent=cfg.tagline;
- var lg=$('logo');lg.textContent='';var src=cfg.logoData||(safe(cfg.logoUrl)?cfg.logoUrl:'');
+ var lg=$('logo');lg.textContent='';var src=cfg.logoData||(okImg(cfg.logoUrl)?cfg.logoUrl:'');
  if(src){var im=mk('img');im.alt='Logo '+cfg.name;im.src=src;im.onerror=function(){lg.textContent=cfg.emoji};lg.appendChild(im)}else lg.textContent=cfg.emoji;
  $('status').className='pill'+(cfg.status==='online'?'':' off');
  $('stTxt').textContent={online:'Online · '+cfg.players+' pemain',maintenance:'Sedang maintenance',offline:'Offline'}[cfg.status];
